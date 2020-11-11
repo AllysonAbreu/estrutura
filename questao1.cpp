@@ -4,95 +4,106 @@
 int linhaA = 2, colunaA = 3;
 int linhaB = 3, colunaB = 2;
 
-int tamanhoA = 6; //tamanho min de um vetor para uma matriz 2x2.
-int tamanhoB = 6;
+int tamanhoMat1 = 6; //tamanho min de um vetor para uma matriz 2x2.
+int tamanhoMat2 = 6;
 
-void preencherA(float matrizA[tamanhoA]){
-printf("\nPREENCHENDO MATRIZ A %d X %d\n\n",linhaA,colunaA);
-int l,c;
-for(l=0;l<linhaA;l++){
-for(c=0;c<colunaA;c++){
-int k = l*colunaA + c;
-printf("linha: %d - coluna: %d:",l,c);
-scanf("%f",&matrizA[k]);
-}
-printf("\n");
-}
-}
-void preencherB(float matrizB[tamanhoB]){
-printf("\nPREENCHENDO MATRIZ B %d X %d\n\n",linhaB,colunaB);
-int l,c;
-for(l=0;l<linhaB;l++){
-for(c=0;c<colunaB;c++){
-int k = l*colunaB + c;
-printf("linha: %d - coluna: %d:",l,c);
-scanf("%f",&matrizB[k]);
-}
-printf("\n");
-}
+void implementarMat1( float mat1[tamanhoMat1] ) {
+        printf("\nPREENCHENDO MATRIZ A %d X %d\n\n",linhaA,colunaA);
+        int l,c;
+        for( l = 0; l < linhaA; l++ ) {
+            for( c = 0; c < colunaA; c++ ) {
+                int k = l*colunaA + c;
+                printf("linha: %d - coluna: %d:",l,c);
+                scanf("%f", &mat1[k]);
+            }
+            printf("\n");
+        }
 }
 
-void multiplicaMat(float matrizA[tamanhoA], float matrizB[tamanhoB]){
-int lA = 0; //linha de A
-int lB = 0; //linha de B
-float soma = 0; //variavel pra somar
-int cA; //coluna de A
-int cB = 0; //coluna de B
-int posA = 0; //posição de A
-int posB = 0; //posição de B
-//esses posA e posB são para a conta não ir diretamente dentro da conta, são para pegar logo a posição de A e de B
-for(cA=0; cA<tamanhoA/2; cA++){ //esse for é para pegar o primeiro termo
-posA = lA*colunaA + cA; //pegando a posição de A
-posB = lB*colunaB + cB; //pegando a posição de B
-soma = soma + (matrizA[posA])*(matrizB[posB]); // fazendo a soma dos valores
-lB = lB + 1; // incrementando a linha de B
-}
-printf("%.2f ", soma);
-lA = 0;
-lB = 0; 
-cB = 1;
-soma = 0;
-for(cA=0; cA<tamanhoA/2; cA++){
-posA = lA*colunaA + cA;
-posB = lB*colunaB + cB;
-soma = soma + (matrizA[posA])*(matrizB[posB]);
-lB = lB + 1;
-}
-printf("%.2f \n", soma);
-lA = 1;
-lB = 0; 
-cB = 0;
-soma = 0;
-for(cA=0; cA<=tamanhoA/2; cA++){
-posA = lA*colunaA + cA;
-posB = lB*colunaB + cB;
-soma = soma + (matrizA[posA])*(matrizB[posB]);
-lB = lB + 1;
-}
-printf("%.2f ", soma);
-lA = 1;
-lB = 0; 
-cB = 1;
-soma = 0;
-for(cA=0; cA<=tamanhoA/2; cA++){
-posA = lA*colunaA + cA;
-posB = lB*colunaB + cB;
-soma = soma + (matrizA[posA])*(matrizB[posB]);
-lB = lB + 1;
-}
-printf("%.2f \n", soma);
+
+void implementarMat2( float mat2[tamanhoMat2] ) {
+        printf("\nPREENCHENDO MATRIZ B %d X %d\n\n",linhaB,colunaB);
+        int l,c;
+        for(l = 0; l < linhaB; l++ ) {
+            for( c = 0; c < colunaB; c++ ) {
+                int k = l*colunaB + c;
+                printf("linha: %d - coluna: %d:",l,c);
+                scanf("%f",&mat2[k]);
+            }      
+            printf("\n");
+        }
 }
 
-int main (void){
-tamanhoA = linhaA*colunaA;
-tamanhoB = linhaB*colunaB;
-float matrizA[tamanhoA];
-float matrizB[tamanhoB];
-preencherA(matrizA);
-preencherB(matrizB);
-multiplicaMat(matrizA, matrizB);
+void produtoMatrizes( float mat1[tamanhoMat1], float mat2[tamanhoMat2] ) {
+        int lA = 0, lB = 0;
+        int cA, cB = 0;
+        int posA = 0, posB = 0;
+        float soma = 0;        
+        
+        for( cA = 0; cA < tamanhoMat1/2; cA++ ) { 
+            posA = lA*colunaA + cA; 
+            posB = lB*colunaB + cB; 
+            soma = soma + (mat1[posA])*(mat2[posB]); 
+            lB = lB + 1; 
+        }
 
-return 0;
+        printf("%.2f ", soma);
+        lA = 0;
+        lB = 0; 
+        cB = 1;
+        soma = 0;
+
+        for( cA = 0; cA < tamanhoMat1/2; cA++ ) {
+            posA = lA*colunaA + cA;
+            posB = lB*colunaB + cB;
+            soma = soma + (mat1[posA])*(mat2[posB]);
+            lB = lB + 1;
+        }
+
+        printf("%.2f \n", soma);
+        lA = 1;
+        lB = 0; 
+        cB = 0;
+        soma = 0;
+
+        for( cA = 0; cA <= tamanhoMat1/2; cA++ ) {
+            posA = lA*colunaA + cA;
+            posB = lB*colunaB + cB;
+            soma = soma + (mat1[posA])*(mat2[posB]);
+            lB = lB + 1;
+        }
+
+        printf("%.2f ", soma);
+        lA = 1;
+        lB = 0; 
+        cB = 1;
+        soma = 0;
+
+        for( cA = 0; cA <= tamanhoMat1/2; cA++ ) {
+            posA = lA*colunaA + cA;
+            posB = lB*colunaB + cB;
+            soma = soma + (mat1[posA])*(mat2[posB]);
+            lB = lB + 1;
+        }
+        printf("%.2f \n", soma);
+
+}
+
+int main (void) {
+        
+        tamanhoMat1 = linhaA*colunaA;
+        tamanhoMat2 = linhaB*colunaB;
+        
+        float mat1[tamanhoMat1];
+        float mat2[tamanhoMat2];
+        
+        implementarMat1(mat1);
+        implementarMat2(mat2);
+        
+        printf("\nImprimindo o produto das Matrizes: \n");
+        produtoMatrizes(mat1, mat2);
+
+        return 0;
 }
 
 

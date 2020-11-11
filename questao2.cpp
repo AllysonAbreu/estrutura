@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int linha = 0, coluna = 0;
-int tamanho = 4; //tamanho min de um vetor para uma matriz 2x2.
+int tamanho = 4; 
 
 void zerar(int vetor[tamanho]) {
 	int k;
@@ -12,7 +12,7 @@ void zerar(int vetor[tamanho]) {
 }
 
 void inserir(int valor, int vetor[tamanho], int i, int j, int n) {
-	int k = i*n + j; // i,j e n significam: posicao da linha, da coluna e número de colunas, respectivamente.
+	int k = i*n + j; 
 	vetor[k] = valor;
 }
 
@@ -48,7 +48,7 @@ void imprimir(int vetor[tamanho]) {
 	}
 }
 
-// Calculando matriz transposta (questão 3)
+// Calculando matriz transposta (questao 2)
 
 void transposta(int vetor[tamanho]) {
 	int i,j;
